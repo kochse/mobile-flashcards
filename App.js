@@ -1,72 +1,54 @@
 import React from 'react';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
-import { StyleSheet, Text, View, TouchableOpacity, FlatList } from 'react-native';
-import { StackNavigator } from 'react-navigation';
+import { StyleSheet, View } from 'react-native';
+import { StackNavigator, TabNavigator } from 'react-navigation';
+import { MaterialIcons } from '@expo/vector-icons'
 import { Constants } from 'expo';
 import reducer from './reducers';
+import Decks from './components/Decks';
+import DeckDetail from './components/DeckDetail';
+import AddDeck from './components/AddDeck';
+import AddQuestion from './components/AddQuestion';
 
-class ListScreen extends React.Component {
-  state = {
-    decks: [
-      { id: 0, title: "Deck 1", cards: 0 },
-      { id: 1, title: "Deck 2", cards: 0 },
-      { id: 2, title: "Deck 3", cards: 0 },
-    ]
-  }
-
-  handleDeckSelection = () => {
-    this.props.navigation.navigate("Deck");
-  }
-
-  renderDeck = ({item}) => {
-    return (
-      <TouchableOpacity style={styles.deck} onPress={this.handleDeckSelection}>
-        <Text>{item.title}</Text>
-        <Text>{item.cards} cards</Text>
-      </TouchableOpacity>
-    )
-  }
-
-  render() {
-    return (
-      <View style={styles.container}>
-        <FlatList
-          data={this.state.decks}
-          renderItem={this.renderDeck}
-          keyExtractor={(item) => item.id }
-        />
-      </View>
-    );
-  }
-}
-
-class SingleDeckScreen extends React.Component {
-  render() {
-    return (
-      <Text>Single Screen</Text>
-    );
-  }
-}
+const Tabs = TabNavigator({
+  Decks: {
+    screen: Decks,
+    navigationOptions: {
+      tabBarLabel: 'DECKS',
+      tabBarIcon: ({ tintColor }) => <MaterialIcons name='library-books' size={30} color={tintColor} />
+    },
+  },
+  AddDeck: {
+    screen: AddDeck,
+    navigationOptions: {
+      tabBarLabel: 'NEW DECK',
+      tabBarIcon: ({ tintColor }) => <MaterialIcons name='add-box' size={30} color={tintColor} />
+    },
+  },
+});
 
 
 const MainNavigator = StackNavigator({
-  List: {
-    screen: ListScreen,
+  Decks: {
+    screen: Tabs,
   },
-  Deck: {
-    screen: SingleDeckScreen,
+  DeckDetail: {
+    screen: DeckDetail,
+  },
+  AddQuestion: {
+    screen: AddQuestion,
   },
 });
 
 export default class App extends React.Component {
-
-
   render() {
-
     return (
       <Provider store={createStore(reducer)}>
-        <MainNavigator/>
+        <View style={styles.container}>
+          <View style={styles.statusBar} />
+          <MainNavigator />
+        </View>
       </Provider>
     );
   }
@@ -79,13 +61,7 @@ const styles = StyleSheet.create({
 
   },
   statusBar: {
-    backgroundColor: "#C2185B",
+    backgroundColor: '#ccc',
     height: Constants.statusBarHeight,
   },
-  deck: {
-    height: 120,
-    borderBottomWidth: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  }
 });
