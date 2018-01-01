@@ -54,9 +54,9 @@ const MainNavigator = StackNavigator({
   },
   Quiz: {
     screen: Quiz,
-    navigationOptions: {
-      title: 'Quiz',
-    },
+    navigationOptions: ({ navigation }) => ({
+      title: `${navigation.state.params.title} Quiz`,
+    }),
   },
 });
 

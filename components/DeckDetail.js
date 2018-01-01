@@ -6,7 +6,7 @@ import Button from './Button';
 
 class SingleDeck extends React.Component {
   handleStartQuiz = () => {
-    this.props.navigation.navigate('Quiz', { key: this.props.deckKey });
+    this.props.navigation.navigate('Quiz', { key: this.props.deckKey, title: this.props.deck.title });
   };
 
   handleAddQuestion = () => {
