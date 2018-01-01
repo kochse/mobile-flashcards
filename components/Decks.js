@@ -48,6 +48,9 @@ class Decks extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    borderTopWidth: 1,
+  },
   deckTitle: {
     fontSize: 18,
     marginBottom: 10,
