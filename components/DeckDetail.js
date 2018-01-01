@@ -26,8 +26,10 @@ class SingleDeck extends React.Component {
       <View style={styles.container}>
         <Text style={styles.title}>{deck.title}</Text>
         <Text style={styles.counter}>{numOfCards !== 0 ? numOfCards + ' Cards' : '0 Cards'}</Text>
-        {numOfCards !== 0 && <Button title="Start Quiz" onPress={this.handleStartQuiz} />}
-        <Button title="Add Question" onPress={this.handleAddQuestion} />
+        <View>
+          {numOfCards !== 0 && <Button title="Start Quiz" onPress={this.handleStartQuiz} />}
+          <Button title="Add Question" onPress={this.handleAddQuestion} />
+        </View>
       </View>
     );
   }
@@ -44,9 +46,10 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+    padding: 40,
     flexDirection: 'column',
-    justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#5889bd',
   },
 });
 

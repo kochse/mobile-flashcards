@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   statusBar: {
-    backgroundColor: '#ccc',
+    backgroundColor: '#dddddd',
     height: Constants.statusBarHeight,
   },
 });

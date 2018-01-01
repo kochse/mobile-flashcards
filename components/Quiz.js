@@ -79,6 +79,7 @@ class Quiz extends React.Component {
 const styles = StyleSheet.create({
   result: {
     padding: 20,
+    backgroundColor: '#5889bd',
   },
   container: {
     flex: 1,
@@ -90,14 +91,14 @@ const styles = StyleSheet.create({
   face: {
     height: 300,
     justifyContent: 'space-between',
-    backgroundColor: '#fdb700',
+    backgroundColor: '#aaaaaa',
     alignItems: 'center',
     padding: 40,
   },
   back: {
     height: 300,
     justifyContent: 'space-between',
-    backgroundColor: '#1496fd',
+    backgroundColor: '#5889bd',
     alignItems: 'center',
     padding: 40,
   },
