@@ -15,11 +15,12 @@ class SingleDeck extends React.Component {
 
   render() {
     const { deck } = this.props;
+    const numOfCards = _.size(deck.questions);
     return (
       <View style={styles.container}>
         <Text style={styles.title}>{deck.title}</Text>
-        <Text style={styles.counter}>{_.size(deck.questions)} Cards</Text>
-        <Button title="Start Quiz" onPress={this.handleStartQuiz} />
+        <Text style={styles.counter}>{numOfCards !== 0 ? numOfCards + ' Cards' : '0 Cards'}</Text>
+        {numOfCards !== 0 && <Button title="Start Quiz" onPress={this.handleStartQuiz} />}
         <Button title="Add Question" onPress={this.handleAddQuestion} />
       </View>
     );
