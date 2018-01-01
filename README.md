@@ -1,6 +1,6 @@
 ## Compatibility
 
-App tested in iOS emulator
+App tested in iOS emulator and Nexus 5x Android 8.1
 
 ## Available Scripts
 

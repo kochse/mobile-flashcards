@@ -51,18 +51,22 @@ class Quiz extends React.Component {
     }
     return (
       <View style={styles.container}>
-        <Text style={styles.counter}>
-          {current + 1} / {size}
-        </Text>
-        <FlipCard style={styles.card} flip={flip} flipHorizontal flipVertical={false}>
+
+        <FlipCard style={styles.card} flip={flip} flipHorizontal flipVertical={false} clickable={false} perspective={1000}>
           {/* Face Side */}
           <View style={styles.face}>
+            <Text style={styles.counter}>
+              {current + 1} / {size}
+            </Text>
             <Text>Question</Text>
             <Text>{_.get(currentQuestion, 'question')}</Text>
             <Button title="Show Answer" onPress={this.handleShowAnswer} />
           </View>
           {/* Back Side */}
           <View style={styles.back}>
+            <Text style={styles.counter}>
+              {current + 1} / {size}
+            </Text>
             <Text>Answer</Text>
             <Text>{_.get(currentQuestion, 'answer')}</Text>
             <View>
@@ -83,8 +87,11 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+    flexDirection: 'row',
   },
-  card: {},
+  card: {
+    height: 300,
+  },
   counter: {
     padding: 20,
   },
