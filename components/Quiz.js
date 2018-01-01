@@ -4,7 +4,7 @@ import _ from 'lodash';
 import { StyleSheet, Text, View } from 'react-native';
 import FlipCard from 'react-native-flip-card';
 import Button from './Button';
-import { clearLocalNotification, setLocalNotification } from "../utils/helpers";
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers';
 
 class Quiz extends React.Component {
   state = {
@@ -57,8 +57,13 @@ class Quiz extends React.Component {
     }
     return (
       <View style={styles.container}>
-
-        <FlipCard style={styles.card} flip={flip} flipHorizontal flipVertical={false} clickable={false} perspective={1000}>
+        <FlipCard
+          style={styles.card}
+          flip={flip}
+          flipHorizontal
+          flipVertical={false}
+          clickable={false}
+          perspective={1000}>
           {/* Face Side */}
           <View style={styles.face}>
             <Text style={styles.counter}>

@@ -4,33 +4,30 @@ import _ from 'lodash';
 import { StyleSheet, Text, View } from 'react-native';
 import Button from './Button';
 
-class SingleDeck extends React.Component {
-  handleStartQuiz = () => {
-    this.props.navigation.navigate('Quiz', {
-      key: this.props.deckKey,
-      title: this.props.deck.title,
-    });
-  };
+const handleStartQuiz = (navigate, key, title) => {
+  navigate('Quiz', {
+    key,
+    title,
+  });
+};
 
-  handleAddQuestion = () => {
-    this.props.navigation.navigate('AddQuestion', { key: this.props.deckKey });
-  };
+const handleAddQuestion = (navigate, key) => {
+  navigate('AddQuestion', { key });
+};
 
-  render() {
-    const { deck } = this.props;
-    const numOfCards = _.size(deck.questions);
-    return (
-      <View style={styles.container}>
-        <Text style={styles.title}>{deck.title}</Text>
-        <Text style={styles.counter}>{numOfCards !== 0 ? numOfCards + ' Cards' : '0 Cards'}</Text>
-        <View>
-          {numOfCards !== 0 && <Button title="Start Quiz" onPress={this.handleStartQuiz} />}
-          <Button title="Add Question" onPress={this.handleAddQuestion} />
-        </View>
+const SingleDeck = ({ navigation, deckKey, deck }) => {
+  const numOfCards = _.size(deck.questions);
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>{deck.title}</Text>
+      <Text style={styles.counter}>{numOfCards !== 0 ? numOfCards + ' Cards' : '0 Cards'}</Text>
+      <View>
+        <Button title="Start Quiz" onPress={() => handleStartQuiz(navigation.navigate, deckKey, deck.title)} disabled={numOfCards === 0}/>
+        <Button title="Add Question" onPress={() => handleAddQuestion(navigation.navigate, deckKey)} />
       </View>
-    );
-  }
-}
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   title: {
