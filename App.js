@@ -12,7 +12,7 @@ import DeckDetail from './components/DeckDetail';
 import AddDeck from './components/AddDeck';
 import AddQuestion from './components/AddQuestion';
 import Quiz from './components/Quiz';
-import { setLocalNotification } from './utils/helpers'
+import { setLocalNotification } from './utils/helpers';
 
 const Tabs = TabNavigator({
   Decks: {

@@ -3,14 +3,16 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 import { StyleSheet, Text, View } from 'react-native';
 import Button from './Button';
-import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers';
 
 class SingleDeck extends React.Component {
   handleStartQuiz = () => {
-    this.props.navigation.navigate('Quiz', { key: this.props.deckKey, title: this.props.deck.title });
+    this.props.navigation.navigate('Quiz', {
+      key: this.props.deckKey,
+      title: this.props.deck.title,
+    });
 
-    clearLocalNotification()
-      .then(setLocalNotification)
+    clearLocalNotification().then(setLocalNotification);
   };
 
   handleAddQuestion = () => {

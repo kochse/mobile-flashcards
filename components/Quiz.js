@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import { StyleSheet, Text, View, TouchableOpacity, FlatList } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import FlipCard from 'react-native-flip-card';
 import Button from './Button';
 
@@ -9,7 +9,7 @@ class Quiz extends React.Component {
   state = {
     current: 0,
     correct: 0,
-    flip: false
+    flip: false,
   };
 
   handleCorrect = () => {
@@ -35,13 +35,15 @@ class Quiz extends React.Component {
   };
 
   render() {
-    const { title, questions, size } = this.props;
+    const { questions, size } = this.props;
     const { current, correct, flip } = this.state;
     const currentQuestion = _.nth(questions, current);
-    if(!currentQuestion) {
+    if (!currentQuestion) {
       return (
         <View style={styles.result}>
-          <Text style={styles.counter}>Correct: {correct} / {size}</Text>
+          <Text style={styles.counter}>
+            Correct: {correct} / {size}
+          </Text>
           <Button title="Restart" onPress={this.handleRestart} />
           <Button title="Back to Deck" onPress={this.handleExit} />
         </View>
@@ -49,13 +51,10 @@ class Quiz extends React.Component {
     }
     return (
       <View style={styles.container}>
-        <Text style={styles.counter}>{current + 1} / {size}</Text>
-        <FlipCard
-          style={styles.card}
-          flip={flip}
-          flipHorizontal={true}
-          flipVertical={false}
-        >
+        <Text style={styles.counter}>
+          {current + 1} / {size}
+        </Text>
+        <FlipCard style={styles.card} flip={flip} flipHorizontal flipVertical={false}>
           {/* Face Side */}
           <View style={styles.face}>
             <Text>Question</Text>
@@ -84,8 +83,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  card: {
-  },
+  card: {},
   counter: {
     padding: 20,
   },
@@ -108,7 +106,6 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state, ownProps) => {
   const deck = state[ownProps.navigation.state.params.key];
   return {
-    title: deck.title,
     questions: deck.questions,
     size: _.size(deck.questions),
   };
