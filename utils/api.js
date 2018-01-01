@@ -4,7 +4,7 @@ export const STORAGE_KEY = 'FlashCards';
 
 function setDummyData() {
   let dummyData = {
-    React: {
+    '01': {
       title: 'React',
       questions: [
         {
@@ -17,7 +17,7 @@ function setDummyData() {
         },
       ],
     },
-    JavaScript: {
+    '02': {
       title: 'JavaScript',
       questions: [
         {

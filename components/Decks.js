@@ -16,13 +16,13 @@ class Decks extends React.Component {
       .then(() => this.setState(() => ({ ready: true })));
   }
 
-  handleDeckSelection = () => {
-    this.props.navigation.navigate("DeckDetail");
+  handleDeckSelection = (key, title) => {
+    this.props.navigation.navigate('DeckDetail', { key, title });
   };
 
   renderDeck = ({item}) => {
     return (
-      <TouchableOpacity style={styles.deck} onPress={this.handleDeckSelection}>
+      <TouchableOpacity style={styles.deck} onPress={() => this.handleDeckSelection(item.key, item.title)}>
         <Text>{item.title}</Text>
         <Text>{_.size(item.questions)} cards</Text>
       </TouchableOpacity>
@@ -31,15 +31,18 @@ class Decks extends React.Component {
 
   render() {
     console.log(this.props.decks);
-    if(!this.state.ready) {
+    if (!this.state.ready) {
       return <Text>loading...</Text>;
     }
+    let decks = _.map(this.props.decks, (value, key) => {
+      return { key, ...value };
+    });
     return (
       <View style={styles.container}>
         <FlatList
-          data={_.values(this.props.decks)}
+          data={decks}
           renderItem={this.renderDeck}
-          keyExtractor={(item, index) => index}
+          keyExtractor={item => item.key}
         />
       </View>
     );

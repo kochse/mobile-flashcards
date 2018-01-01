@@ -10,6 +10,7 @@ import Decks from './components/Decks';
 import DeckDetail from './components/DeckDetail';
 import AddDeck from './components/AddDeck';
 import AddQuestion from './components/AddQuestion';
+import Quiz from './components/Quiz';
 
 const Tabs = TabNavigator({
   Decks: {
@@ -32,12 +33,27 @@ const Tabs = TabNavigator({
 const MainNavigator = StackNavigator({
   Decks: {
     screen: Tabs,
+    navigationOptions: {
+      title: 'Deck List',
+    },
   },
   DeckDetail: {
     screen: DeckDetail,
+    navigationOptions: ({navigation}) => ({
+      title: `Deck: ${navigation.state.params.title}`,
+    }),
   },
   AddQuestion: {
     screen: AddQuestion,
+    navigationOptions: {
+      title: 'Add Question',
+    },
+  },
+  Quiz: {
+    screen: Quiz,
+    navigationOptions: {
+      title: 'Quiz',
+    },
   },
 });
 
