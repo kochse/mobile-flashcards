@@ -17,7 +17,10 @@ export default function(state = {}, action) {
         ...state,
         [action.payload.key]: {
           ...selDeck,
-          questions: [...selDeck.questions, { question: action.payload.question, answer: action.payload.answer }]
+          questions: [
+            ...selDeck.questions,
+            { question: action.payload.question, answer: action.payload.answer },
+          ],
         },
       };
     }

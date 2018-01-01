@@ -6,7 +6,6 @@ const Input = ({ label, value, onChangeText }) => (
     <Text style={styles.label}>{label}</Text>
     <TextInput style={styles.input} value={value} onChangeText={onChangeText} />
   </View>
-
 );
 
 const styles = StyleSheet.create({

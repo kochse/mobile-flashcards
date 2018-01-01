@@ -22,7 +22,8 @@ function setDummyData() {
       questions: [
         {
           question: 'What is a closure?',
-          answer: 'The combination of a function and the lexical environment within which that function was declared',
+          answer:
+            'The combination of a function and the lexical environment within which that function was declared',
         },
       ],
     },
@@ -42,14 +43,13 @@ export function getDecks() {
 }
 
 export function saveDeck(deck) {
-  return AsyncStorage.mergeItem(STORAGE_KEY, JSON.stringify(deck))
+  return AsyncStorage.mergeItem(STORAGE_KEY, JSON.stringify(deck));
 }
 
 export function addCardToDeck({ card, key }) {
-  return AsyncStorage.getItem(STORAGE_KEY)
-    .then((results) => {
-      const data = JSON.parse(results);
-      data[key] = { ...data[key], questions: [ ...data[key].questions, card ] }
-      AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(data))
-    })
+  return AsyncStorage.getItem(STORAGE_KEY).then(results => {
+    const data = JSON.parse(results);
+    data[key] = { ...data[key], questions: [...data[key].questions, card] };
+    AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  });
 }

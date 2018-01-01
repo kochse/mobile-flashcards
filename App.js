@@ -3,7 +3,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { StyleSheet, View } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation';
-import { MaterialIcons } from '@expo/vector-icons'
+import { MaterialIcons } from '@expo/vector-icons';
 import { Constants } from 'expo';
 import { logger } from 'redux-logger';
 import reducer from './reducers';
@@ -18,18 +18,19 @@ const Tabs = TabNavigator({
     screen: Decks,
     navigationOptions: {
       tabBarLabel: 'ALL DECKS',
-      tabBarIcon: ({ tintColor }) => <MaterialIcons name='library-books' size={30} color={tintColor} />
+      tabBarIcon: ({ tintColor }) => (
+        <MaterialIcons name="library-books" size={30} color={tintColor} />
+      ),
     },
   },
   AddDeck: {
     screen: AddDeck,
     navigationOptions: {
       tabBarLabel: 'NEW DECK',
-      tabBarIcon: ({ tintColor }) => <MaterialIcons name='add-box' size={30} color={tintColor} />
+      tabBarIcon: ({ tintColor }) => <MaterialIcons name="add-box" size={30} color={tintColor} />,
     },
   },
 });
-
 
 const MainNavigator = StackNavigator({
   Decks: {
@@ -40,7 +41,7 @@ const MainNavigator = StackNavigator({
   },
   DeckDetail: {
     screen: DeckDetail,
-    navigationOptions: ({navigation}) => ({
+    navigationOptions: ({ navigation }) => ({
       title: `${navigation.state.params.title}`,
     }),
   },
@@ -75,7 +76,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-
   },
   statusBar: {
     backgroundColor: '#ccc',

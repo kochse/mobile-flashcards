@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { connect } from 'react-redux';
 import { addDeck } from '../actions';
 import { saveDeck } from '../utils/api';
-import { uuidv4 } from '../utils/helpers'
+import { uuidv4 } from '../utils/helpers';
 import Input from './Input';
 import Button from './Button';
 
@@ -29,11 +29,7 @@ class AddDeck extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Input
-          label="Enter Title"
-          value={this.state.title}
-          onChangeText={this.handleChangeTitle}
-        />
+        <Input label="Enter Title" value={this.state.title} onChangeText={this.handleChangeTitle} />
         <Button title="Submit" onPress={this.handleSubmit} />
       </View>
     );
@@ -52,6 +48,5 @@ const mapDispatchToProps = (dispatch, { navigation }) => ({
 });
 
 const mapStateToProps = () => ({});
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddDeck);

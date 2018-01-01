@@ -36,11 +36,7 @@ class AddQuestion extends React.Component {
           value={this.state.question}
           onChangeText={this.handleChangeQuestion}
         />
-        <Input
-          label="Answer"
-          value={this.state.answer}
-          onChangeText={this.handleChangeAnswer}
-        />
+        <Input label="Answer" value={this.state.answer} onChangeText={this.handleChangeAnswer} />
         <Button title="Submit" onPress={this.handleSubmit} />
       </View>
     );

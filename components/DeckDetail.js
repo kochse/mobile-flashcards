@@ -5,7 +5,6 @@ import { StyleSheet, Text, View } from 'react-native';
 import Button from './Button';
 
 class SingleDeck extends React.Component {
-
   handleStartQuiz = () => {
     this.props.navigation.navigate('Quiz', { key: this.props.deckKey });
   };

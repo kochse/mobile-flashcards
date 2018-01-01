@@ -22,7 +22,9 @@ class Decks extends React.Component {
 
   renderDeck = ({ item }) => {
     return (
-      <TouchableOpacity style={styles.deck} onPress={() => this.handleDeckSelection(item.key, item.title)}>
+      <TouchableOpacity
+        style={styles.deck}
+        onPress={() => this.handleDeckSelection(item.key, item.title)}>
         <Text style={styles.deckTitle}>{item.title}</Text>
         <Text>{_.size(item.questions)} cards</Text>
       </TouchableOpacity>
