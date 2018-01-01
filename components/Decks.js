@@ -33,13 +33,10 @@ class Decks extends React.Component {
     if (!this.state.ready) {
       return <Text>loading...</Text>;
     }
-    let decks = _.map(this.props.decks, (value, key) => {
-      return { key, ...value };
-    });
     return (
       <View style={styles.container}>
         <FlatList
-          data={decks}
+          data={this.props.decks}
           renderItem={this.renderDeck}
           keyExtractor={item => item.key}
         />
@@ -62,8 +59,12 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = state => ({
-  decks: state,
-});
+const mapStateToProps = state => {
+  let decks = _.map(state, (value, key) => {
+    return { key, ...value };
+  });
+  decks = _.sortBy(decks, ['title']);
+  return { decks };
+};
 
 export default connect(mapStateToProps, { receiveDecks })(Decks);

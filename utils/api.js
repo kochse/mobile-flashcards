@@ -41,8 +41,8 @@ export function getDecks() {
   return AsyncStorage.getItem(STORAGE_KEY).then(formatResults);
 }
 
-export function saveDeck({ entry, key }) {
-  return AsyncStorage.mergeItem(STORAGE_KEY, JSON.stringify({ [key]: entry }))
+export function saveDeck(deck) {
+  return AsyncStorage.mergeItem(STORAGE_KEY, JSON.stringify(deck))
 }
 
 export function addCardToDeck({ card, key }) {
