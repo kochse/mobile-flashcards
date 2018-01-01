@@ -45,4 +45,11 @@ export function saveDeck({ entry, key }) {
   return AsyncStorage.mergeItem(STORAGE_KEY, JSON.stringify({ [key]: entry }))
 }
 
-// export function addCardToDeck({ entry, key }) {
+export function addCardToDeck({ card, key }) {
+  return AsyncStorage.getItem(STORAGE_KEY)
+    .then((results) => {
+      const data = JSON.parse(results);
+      data[key] = { ...data[key], questions: [ ...data[key].questions, card ] }
+      AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(data))
+    })
+}

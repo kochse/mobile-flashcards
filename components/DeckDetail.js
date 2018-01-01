@@ -7,11 +7,11 @@ import Button from './Button';
 class SingleDeck extends React.Component {
 
   handleStartQuiz = () => {
-    this.props.navigation.navigate('Quiz', { key: this.props.deck.key });
+    this.props.navigation.navigate('Quiz', { key: this.props.deckKey });
   };
 
   handleAddQuestion = () => {
-    this.props.navigation.navigate('AddQuestion', { key: this.props.deck.key });
+    this.props.navigation.navigate('AddQuestion', { key: this.props.deckKey });
   };
 
   render() {
@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state, ownProps) => ({
+  deckKey: ownProps.navigation.state.params.key,
   deck: state[ownProps.navigation.state.params.key],
 });
 

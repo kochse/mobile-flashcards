@@ -20,17 +20,16 @@ class Decks extends React.Component {
     this.props.navigation.navigate('DeckDetail', { key, title });
   };
 
-  renderDeck = ({item}) => {
+  renderDeck = ({ item }) => {
     return (
       <TouchableOpacity style={styles.deck} onPress={() => this.handleDeckSelection(item.key, item.title)}>
-        <Text>{item.title}</Text>
+        <Text style={styles.deckTitle}>{item.title}</Text>
         <Text>{_.size(item.questions)} cards</Text>
       </TouchableOpacity>
     );
   };
 
   render() {
-    console.log(this.props.decks);
     if (!this.state.ready) {
       return <Text>loading...</Text>;
     }
@@ -50,12 +49,17 @@ class Decks extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  deckTitle: {
+    fontSize: 18,
+    marginBottom: 10,
+  },
   deck: {
     height: 120,
     borderBottomWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
-  }
+    backgroundColor: 'white',
+  },
 });
 
 const mapStateToProps = state => ({

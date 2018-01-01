@@ -1,10 +1,11 @@
 import React from 'react';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { StyleSheet, View } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation';
 import { MaterialIcons } from '@expo/vector-icons'
 import { Constants } from 'expo';
+import { logger } from 'redux-logger';
 import reducer from './reducers';
 import Decks from './components/Decks';
 import DeckDetail from './components/DeckDetail';
@@ -16,7 +17,7 @@ const Tabs = TabNavigator({
   Decks: {
     screen: Decks,
     navigationOptions: {
-      tabBarLabel: 'DECKS',
+      tabBarLabel: 'ALL DECKS',
       tabBarIcon: ({ tintColor }) => <MaterialIcons name='library-books' size={30} color={tintColor} />
     },
   },
@@ -34,13 +35,13 @@ const MainNavigator = StackNavigator({
   Decks: {
     screen: Tabs,
     navigationOptions: {
-      title: 'Deck List',
+      title: 'Decks',
     },
   },
   DeckDetail: {
     screen: DeckDetail,
     navigationOptions: ({navigation}) => ({
-      title: `Deck: ${navigation.state.params.title}`,
+      title: `${navigation.state.params.title}`,
     }),
   },
   AddQuestion: {
@@ -60,7 +61,7 @@ const MainNavigator = StackNavigator({
 export default class App extends React.Component {
   render() {
     return (
-      <Provider store={createStore(reducer)}>
+      <Provider store={createStore(reducer, applyMiddleware(logger))}>
         <View style={styles.container}>
           <View style={styles.statusBar} />
           <MainNavigator />
