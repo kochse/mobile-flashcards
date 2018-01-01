@@ -4,6 +4,7 @@ import _ from 'lodash';
 import { StyleSheet, Text, View } from 'react-native';
 import FlipCard from 'react-native-flip-card';
 import Button from './Button';
+import { clearLocalNotification, setLocalNotification } from "../utils/helpers";
 
 class Quiz extends React.Component {
   state = {
@@ -34,11 +35,16 @@ class Quiz extends React.Component {
     this.setState({ ...this.state, flip: true });
   };
 
+  handleFinishDeck = () => {
+    clearLocalNotification().then(setLocalNotification);
+  };
+
   render() {
     const { questions, size } = this.props;
     const { current, correct, flip } = this.state;
     const currentQuestion = _.nth(questions, current);
     if (!currentQuestion) {
+      this.handleFinishDeck();
       return (
         <View style={styles.result}>
           <Text style={styles.counter}>
